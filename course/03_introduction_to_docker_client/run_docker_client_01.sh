@@ -86,3 +86,25 @@ exit
 
 # 	docker: Error response from daemon: Conflict. The container name "/mydeb" is already in use by container "342e771885410fce71b732c4cc17d9ad106cc31c65628b43a49bd89fbd6e3a27". You have to remove (or rename) that container to be able to reuse that name.
 # See 'docker run --help'.
+
+##################
+# Reuse containers
+##################
+
+# -> Showing containers wherever their status are
+sudo docker container ps -a
+
+# -> Start an existing container in interactive mode
+# sudo docker container start -ai <container_name> (equivalent to sudo docker container run -it <container_name>, but it creates the container itself, not only starts it)
+sudo docker container start -ai mydeb
+
+# Creating files in the started container
+touch docker-course.txt
+ls
+exit
+
+# -> Start an existing container in interactive mode again to check if the docker-course.txt file is there
+# sudo docker container start -ai <container_name> (equivalent to sudo docker container run -it <container_name>, but it creates the container itself, not only starts it)
+sudo docker container start -ai mydeb
+ls
+exit

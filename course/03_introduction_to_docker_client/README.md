@@ -99,3 +99,31 @@ sudo docker container run --name mydeb -it debian bash
 See 'docker run --help'.
 
 ```
+
+# Reuse containers
+
+- Showing containers wherever their status are
+```console
+sudo docker container ps -a
+```
+
+- Start an existing container in interactive mode
+sudo docker container start -ai <container_name> (equivalent to sudo docker container run -it <container_name>, but it creates the container itself, not only starts it)
+```console
+sudo docker container start -ai mydeb
+```
+
+Creating files in the started container
+```console
+touch docker-course.txt
+ls
+exit
+```
+
+- Start an existing container in interactive mode again to check if the docker-course.txt file is there
+sudo docker container start -ai <container_name> (equivalent to sudo docker container run -it <container_name>, but it creates the container itself, not only starts it)
+```console
+sudo docker container start -ai mydeb
+ls
+exit
+```
