@@ -76,3 +76,26 @@ Observe Container Names given by docker
 ```console
 sudo docker container ps -a
 ```
+
+# Naming containers
+
+- Help run command
+```console
+sudo docker container run --help
+```
+
+- Create a named container
+sudo docker container run --name <name> -<mode> <image> <command>
+```console
+sudo docker container run --name mydeb -it debian bash
+exit
+```
+
+- Trying creating a named contair which name already exists
+```console
+sudo docker container run --name mydeb -it debian bash
+
+	docker: Error response from daemon: Conflict. The container name "/mydeb" is already in use by container "342e771885410fce71b732c4cc17d9ad106cc31c65628b43a49bd89fbd6e3a27". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+
+```
