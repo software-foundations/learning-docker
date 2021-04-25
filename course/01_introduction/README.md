@@ -1,6 +1,3 @@
-# learning-docker
-Learning docker concepts to setup application envrironments to easily be deployed
-
 # Docker is ...
 
 - Virtualization Tecnology based on Software
