@@ -273,6 +273,80 @@ curl http://127.0.0.1:8080
 	                <h1>Docker Course</h1>
 	        </body>
 	</html>
+
+curl http://0.0.0.0:8080
+
+	<html>                            
+	        <head>                           
+	                <title>Docker Course</title>
+	        </head>                              
+	        <body>                    
+	                <h1>Docker Course</h1>
+	        </body>
+	</html>
+```
+
+Or open http://127.0.0.1:8080 in browser
+Or open http://0.0.0.0:8080 in browser
+```html
+<html>                            
+        <head>                           
+                <title>Docker Course</title>
+        </head>                              
+        <body>                    
+                <h1>Docker Course</h1>
+        </body>
+</html>
+```
+
+# Execute a web server (container) in background: -d flag (daemon)
+
+sudo docker container run -d --name <container_name> -p <host_port>:<container_port> -v <abs_path_host_folder>:<abs_path_container_folder> <image>
+
+1. Create a folder and enter in it and copy html/index.html content from ../01_example-volume
+
+```console
+mkdir 02_example-volume
+cd 02_example-volume
+mkdir html
+cp ../01_example-volume/html/index.html html/
+```
+
+2. Execute a web server in background. The hash code is the container id being executed in background (daemon mode)
+
+```console
+$ sudo docker container run -d --name 02_example-daemon-basic -p 8080:80 -v $(pwd)/html:/usr/share/nginx/html nginx
+
+	a06f96b64168236e10dd7dfb0c4ba9470b3eeb1079b633d26d887e2687482c7d 
+
+$
+```
+
+3. See active container process
+
+```console
+sudo docker container ps
+
+	CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                                   
+	NAMES
+	a06f96b64168   nginx     "/docker-entrypoint.…"   4 minutes ago   Up 4 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   
+	01_example-daemon-basic
+```
+
+4. Test the conection
+
+Terminal 02
+```console
+curl http://0.0.0.0:8080
+
+	<html>                            
+	        <head>                           
+	                <title>Docker Course</title>
+	        </head>                              
+	        <body>                    
+	                <h1>Docker Course</h1>
+	        </body>
+	</html>
 ```
 
 Or open http://127.0.0.1:8080 in browser
@@ -285,4 +359,9 @@ Or open http://127.0.0.1:8080 in browser
                 <h1>Docker Course</h1>
         </body>
 </html>
+```
+
+5. Stop the daemon (container process in background)
+```console
+sudo docker container stop 02_example-daemon-basic
 ```
