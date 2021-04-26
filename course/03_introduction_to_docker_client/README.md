@@ -175,3 +175,114 @@ curl http://127.0.0.1:8080
 ```console
 sudo docker container ps
 ```
+
+# Maping directories to containers
+
+1. Create a folder
+```console
+mkdir 01_docker-course
+```
+
+2. Create a folder to be mapping as a volume
+```console
+cd 01_docker-course
+mkdir 01_example-volume
+```
+
+3. Run a docker container, and mapping a volumn using the -v flag
+sudo docker container run -p <host_port>:<container_port> -v <abs_path_host_folder>:<abs_path_container_folder> <image>
+
+In this case, the container will point to host_folder every time the container folder
+is called by port 8080
+
+In other words, the os port 8080 points to 80 at the container
+while the container folder points to host folder
+
+Terminal 01
+```console
+cd 01_example-volume
+sudo docker container run -p 8080:80 -v $(pwd)/not-found:/usr/share/nginx/html nginx
+```
+
+4. Test the conection
+
+Terminal 02
+```console
+curl http://127.0.0.1:8080
+
+	<html>                                                         
+	<head><title>403 Forbidden</title></head>                    
+	<body>                                                                              
+	<center><h1>403 Forbidden</h1></center>                                                                                                                              
+	<hr><center>nginx/1.19.10</center>
+	</body>                                  
+	</html>
+```
+
+Or open http://127.0.0.1:8080 in browser
+```html
+<html>                                                         
+<head><title>403 Forbidden</title></head>                    
+<body>                                                                              
+<center><h1>403 Forbidden</h1></center>                                                                                                                              
+<hr><center>nginx/1.19.10</center>
+</body>                                  
+</html>
+```
+
+5. Create html folder inside 01_example-volume; index.html inside html folder
+```console
+mkdir html
+cd html
+touch index.html
+```
+
+6. writes in index.html
+```html
+<html>
+	<head>
+		<title>Docker Course</title>
+	</head>
+	<body>
+		<h1>Docker Course</h1>
+	</body>
+</html>
+```
+
+7. Making nginx points to index.html we create at the host folder
+
+Inside 01_example-volume ...
+
+sudo docker container run -p <host_port>:<container_port> -v <abs_path_host_folder>:<abs_path_container_folder> <image>
+
+```console
+sudo docker container run -p 8080:80 -v $(pwd)/html:/usr/share/nginx/html nginx
+```
+
+8. Test the conection
+
+Terminal 02
+```console
+curl http://127.0.0.1:8080
+
+	<html>                            
+	        <head>                           
+	                <title>Docker Course</title>
+	        </head>                              
+	        <body>                    
+	                <h1>Docker Course</h1>
+	        </body>
+	</html>
+```
+
+Or open http://127.0.0.1:8080 in browser
+```html
+<html>                            
+        <head>                           
+                <title>Docker Course</title>
+        </head>                              
+        <body>                    
+                <h1>Docker Course</h1>
+        </body>
+</html>
+```
