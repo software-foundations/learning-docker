@@ -324,3 +324,30 @@ sudo docker container ps
 sudo docker container restart 02_example-daemon-basic
 
 sudo docker container stop 02_example-daemon-basic
+
+#################################
+# Handle container in daemon mode
+#################################
+
+# list containers
+sudo docker container ls
+sudo docker container list
+sudo docker container ps
+sudo docker ps # old way
+
+# list all containers
+sudo docker container ls -a
+sudo docker container list -a
+sudo docker container ps -a
+
+# access logs of a container
+sudo docker container start 02_example-daemon-basic
+sudo docker container logs 02_example-daemon-basic
+
+# inspect a container
+sudo docker container start 02_example-daemon-basic
+sudo docker container inspect 02_example-daemon-basic
+
+# check the system which is beeing executed in the container
+sudo docker container inspect 02_example-daemon-basic
+sudo docker container exec 02_example-daemon-basic uname -or
