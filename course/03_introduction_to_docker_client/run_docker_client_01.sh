@@ -306,3 +306,21 @@ curl http://0.0.0.0:8080
 
 # -> 5. Stop the daemon (container process in background)
 sudo docker container stop 02_example-daemon-basic
+
+#############################
+# Manage docker in background
+
+# docker container start <container name or id>
+# docker container restart <container name or id>
+# docker container stop <container_name or id>
+#############################
+
+cd 01_docker-course/02_example-volume
+
+sudo docker container start 02_example-daemon-basic
+
+sudo docker container ps
+
+sudo docker container restart 02_example-daemon-basic
+
+sudo docker container stop 02_example-daemon-basic
