@@ -351,3 +351,19 @@ sudo docker container inspect 02_example-daemon-basic
 # check the system which is beeing executed in the container
 sudo docker container inspect 02_example-daemon-basic
 sudo docker container exec 02_example-daemon-basic uname -or
+
+##########################
+# New Docker Client Syntax
+##########################
+
+sudo docker container ls
+sudo docker image ls
+sudo docker volume ls
+
+# remove image
+
+# old syntax
+sudo docker rmi <image_id>
+
+# new syntax
+sudo docker image rm <image_id>
