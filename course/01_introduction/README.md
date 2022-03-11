@@ -9,7 +9,6 @@
 
 - A virtual machine
 
-
 # Docker ...
 
 - Packs software in different levels of isolation
@@ -17,7 +16,10 @@
 
 # In docker ...
 
-- Host and Container Shares the kernel
+- Host and Container Shares
+1. kernel
+2. Some binaries
+
 - Container is a process in Host OS
 - Container processes cannot access nothing outside in container
 
@@ -43,7 +45,7 @@
 - Is a model of File System ready-only used to create containers
 - Create a layer when it startsup, and only this layer can be modified
 
-- Shouldn't be created by commit command
+- Shouldn't be created by commit command (it is not a good practice)
 - Should be created by a process called build (mantain trail)
 - Are storaged in the repositories on Registry (Docker Hub)
 - Are compound by one or more layers
